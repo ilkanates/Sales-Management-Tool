@@ -240,12 +240,6 @@ public class mainScreen extends javax.swing.JFrame {
             }
         });
 
-        textSearchSurname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textSearchSurnameActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -322,7 +316,6 @@ public class mainScreen extends javax.swing.JFrame {
                 String telephone = rs.getString("telephone");
                 String adres = rs.getString("adres");
 
-                //addrow
                 dtm.addRow(new String[]{id, name, surname, telephone, adres});
 
             }
@@ -356,7 +349,6 @@ public class mainScreen extends javax.swing.JFrame {
                 String status = rs.getString("status");
                 String createdAt = rs.getString("createdAt");
 
-                //addrow
                 dtm1.addRow(new String[]{id, name, surname, adres, amount, status, createdAt});
 
             }
@@ -503,7 +495,7 @@ public class mainScreen extends javax.swing.JFrame {
         if (result == JOptionPane.YES_OPTION) {
             try {
                 String query = "DELETE FROM `orders` where status = 'Done'";
-                int sonuc = db.baglan().executeUpdate(query);
+                int dbResult = db.baglan().executeUpdate(query);
                 refreshOrderTable();
 
             } catch (SQLException e) {
@@ -531,10 +523,6 @@ public class mainScreen extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void textSearchSurnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchSurnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textSearchSurnameActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
             String searchName = textSearchName.getText().trim();
@@ -586,22 +574,6 @@ public class mainScreen extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(mainScreen.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
