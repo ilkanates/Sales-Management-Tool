@@ -113,7 +113,7 @@ public class OrderView extends javax.swing.JFrame {
         String orderA = labelOrderAdres.getText().trim();
 
         try {
-            int add = db.baglan().executeUpdate("INSERT INTO `orders` (`cid`, `status`, `amount`) VALUES ('" + cid + "', 'Preparing', '" + amount + "');");
+            int add = db.connect().executeUpdate("INSERT INTO `orders` (`cid`, `status`, `amount`) VALUES ('" + cid + "', 'Preparing', '" + amount + "');");
             if (add > 0) {
                 JOptionPane.showMessageDialog(rootPane, "Successful");
 

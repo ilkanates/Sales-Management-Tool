@@ -308,7 +308,7 @@ public class mainScreen extends javax.swing.JFrame {
 
         try {
             String query = "select *from customers";
-            ResultSet rs = db.baglan().executeQuery(query);
+            ResultSet rs = db.connect().executeQuery(query);
             while (rs.next()) {
                 String id = rs.getString("id");
                 String name = rs.getString("name");
@@ -339,7 +339,7 @@ public class mainScreen extends javax.swing.JFrame {
 
         try {
             String query = "SELECT orders.id, customers.name, customers.surname, customers.adres, orders.amount, orders.status, date(orders.createdAt) as createdAt FROM susatis.orders JOIN customers ON orders.cid = customers.id";
-            ResultSet rs = db.baglan().executeQuery(query);
+            ResultSet rs = db.connect().executeQuery(query);
             while (rs.next()) {
                 String id = rs.getString("id");
                 String name = rs.getString("name");
@@ -356,7 +356,7 @@ public class mainScreen extends javax.swing.JFrame {
             sorterOrder = new TableRowSorter<DefaultTableModel>(dtm1);
             tableOrders.setRowSorter(sorterOrder);
         } catch (Exception e) {
-            System.err.println("Data Getirme Hatası : " + e);
+            System.err.println("Data Error : " + e);
         }
 
     }
@@ -378,7 +378,7 @@ public class mainScreen extends javax.swing.JFrame {
                 String id = (String) tableCustomers.getValueAt(row, 0);
                 try {
                     String query = "DELETE FROM `customers` WHERE `customers`.`id` = " + id + "";
-                    int sonuc = db.baglan().executeUpdate(query);
+                    int sonuc = db.connect().executeUpdate(query);
                     if (sonuc > 0) {
                         refreshCustomerTable();
                         id = "";
@@ -432,7 +432,7 @@ public class mainScreen extends javax.swing.JFrame {
             String id = (String) tableOrders.getValueAt(row, 0);
             try {
                 String query = String.format("update orders Set status = '%s' where id = %s", "On The Way", id);
-                int result = db.baglan().executeUpdate(query);
+                int result = db.connect().executeUpdate(query);
                 if (result <= 0) {
                     JOptionPane.showMessageDialog(rootPane, "Failure");
                 }
@@ -452,7 +452,7 @@ public class mainScreen extends javax.swing.JFrame {
             String id = (String) tableOrders.getValueAt(row, 0);
             try {
                 String query = String.format("update orders Set status = '%s' where id = %s", "Done", id);
-                int result = db.baglan().executeUpdate(query);
+                int result = db.connect().executeUpdate(query);
                 if (result <= 0) {
                     JOptionPane.showMessageDialog(rootPane, "Failure");
                 }
@@ -495,7 +495,7 @@ public class mainScreen extends javax.swing.JFrame {
         if (result == JOptionPane.YES_OPTION) {
             try {
                 String query = "DELETE FROM `orders` where status = 'Done'";
-                int dbResult = db.baglan().executeUpdate(query);
+                int dbResult = db.connect().executeUpdate(query);
                 refreshOrderTable();
 
             } catch (SQLException e) {
@@ -514,7 +514,7 @@ public class mainScreen extends javax.swing.JFrame {
                 String id = (String) tableOrders.getValueAt(row, 0);
                 try {
                     String query = "DELETE FROM `orders` WHERE `orders`.`id` = " + id + "";
-                    int sonuc = db.baglan().executeUpdate(query);
+                    int sonuc = db.connect().executeUpdate(query);
                     refreshOrderTable();
                 } catch (SQLException e) {
                     System.out.println("Delete Error : " + e);

@@ -54,18 +54,6 @@ public class CustomerView extends javax.swing.JFrame {
             }
         });
 
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
-            }
-        });
-
-        txtSurname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSurnameActionPerformed(evt);
-            }
-        });
-
         txtAdres.setColumns(20);
         txtAdres.setRows(5);
         jScrollPane1.setViewportView(txtAdres);
@@ -128,10 +116,6 @@ public class CustomerView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtSurnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSurnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSurnameActionPerformed
-
     private void txtSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSaveActionPerformed
 
         String name = txtName.getText().trim();
@@ -140,7 +124,7 @@ public class CustomerView extends javax.swing.JFrame {
         String adres = txtAdres.getText().trim();
         if (isEdit == false) {
             try {
-                int add = db.baglan().executeUpdate("INSERT INTO `customers` (`name`, `surname`, `telephone`, `adres`) VALUES ('" + name + "', '" + surname + "', '" + telephone + "', '" + adres + "');");
+                int add = db.connect().executeUpdate("INSERT INTO `customers` (`name`, `surname`, `telephone`, `adres`) VALUES ('" + name + "', '" + surname + "', '" + telephone + "', '" + adres + "');");
                 if (add > 0) {
                     JOptionPane.showMessageDialog(rootPane, "Successful");
                    
@@ -148,13 +132,13 @@ public class CustomerView extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, "Failure");
                 }
             } catch (Exception e) {
-                System.err.println("Ekleme Hatasi : " + e);
+                System.err.println("Insert Error : " + e);
             }
         } else {
             try {
 
                 String query = String.format("update customers Set name = '%s', surname = '%s', telephone = '%s', adres = '%s' where id = %s", name, surname, telephone, adres, cid);
-                int result = db.baglan().executeUpdate(query);
+                int result = db.connect().executeUpdate(query);
                 if (result > 0) {
                     JOptionPane.showMessageDialog(rootPane, "Successful");
                 } else {
@@ -168,10 +152,6 @@ public class CustomerView extends javax.swing.JFrame {
         }
         mainScreen.refreshCustomerTable();
     }//GEN-LAST:event_txtSaveActionPerformed
-
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
 
     /**
      * @param args the command line arguments
