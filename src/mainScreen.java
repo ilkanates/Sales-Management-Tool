@@ -49,6 +49,7 @@ public class mainScreen extends javax.swing.JFrame {
         textSearchSurname = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SALES MANAGER TOOL");
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("CUSTOMERS"));
