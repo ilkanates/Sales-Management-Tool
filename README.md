@@ -1,4 +1,4 @@
-# Sales-Management-Tool
+# SALES MANAGEMENT TOOL
 
 Sales management tool can be used to manage accounts and orders. Developed with Java and MySQL.
 
