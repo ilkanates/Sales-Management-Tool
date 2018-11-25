@@ -34,7 +34,7 @@ public class OrderView extends javax.swing.JFrame {
         textOrderAmount = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("ADD ORDER");
+        setTitle("Order");
         setPreferredSize(new java.awt.Dimension(360, 390));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/addorder.png"))); // NOI18N

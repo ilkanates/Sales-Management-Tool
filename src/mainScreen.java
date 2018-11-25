@@ -469,7 +469,7 @@ public class mainScreen extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        int result = JOptionPane.showConfirmDialog(rootPane, "Are you sure", "Delete All Order", JOptionPane.YES_NO_OPTION);
+        int result = JOptionPane.showConfirmDialog(rootPane, "Are you sure", "Delete Finished Orders", JOptionPane.YES_NO_OPTION);
         if (result == JOptionPane.YES_OPTION) {
             try {
                 String query = "DELETE FROM `orders` where status = 'Done'";
