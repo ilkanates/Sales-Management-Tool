@@ -1,6 +1,6 @@
 # SALES MANAGEMENT TOOL
 
-Sales management tool can be used to manage accounts and orders. Developed with Java and MySQL.
+Sales management tool can be used to manage accounts and orders. Developed with Java and MySQL. Written by Ilkan Ates. 
 
 ### FUNCTIONS
 1. Add customer with name, surname, telephone and address.
