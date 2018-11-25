@@ -120,11 +120,10 @@ public class OrderView extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Failure");
             }
-        } catch (MysqlDataTruncation e) {
+        } catch (Exception e) {
             System.err.println("Add error: " + e);
             JOptionPane.showMessageDialog(rootPane, "Please enter valid amount");
-        } catch (SQLException ex) {
-            Logger.getLogger(OrderView.class.getName()).log(Level.SEVERE, null, ex);
+ 
         }
          mainScreen.refreshOrderTable();
     }//GEN-LAST:event_jButton1ActionPerformed
