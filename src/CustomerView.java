@@ -13,7 +13,7 @@ public class CustomerView extends javax.swing.JFrame {
     public String cid;
     public boolean isEdit = false;
 
-    public CustomerView(String id, String name, String surname, String telephone, String adres) {
+    public CustomerView(String id, String name, String surname, String telephone, String address) {
         initComponents();
         cid = id;
         isEdit = true;
@@ -21,7 +21,7 @@ public class CustomerView extends javax.swing.JFrame {
                 txtName.setText(name);
                 txtSurname.setText(surname);
                 txtTelephone.setText(telephone);
-                txtAdres.setText(adres);
+                txtAddress.setText(address);
             
     }
 
@@ -39,7 +39,7 @@ public class CustomerView extends javax.swing.JFrame {
         txtSurname = new javax.swing.JTextField();
         txtTelephone = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtAdres = new javax.swing.JTextArea();
+        txtAddress = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -57,9 +57,9 @@ public class CustomerView extends javax.swing.JFrame {
             }
         });
 
-        txtAdres.setColumns(20);
-        txtAdres.setRows(5);
-        jScrollPane1.setViewportView(txtAdres);
+        txtAddress.setColumns(20);
+        txtAddress.setRows(5);
+        jScrollPane1.setViewportView(txtAddress);
 
         jLabel1.setText("NAME");
 
@@ -67,7 +67,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         jLabel3.setText("TELEPHONE");
 
-        jLabel4.setText("ADRES");
+        jLabel4.setText("ADDRESS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,10 +124,12 @@ public class CustomerView extends javax.swing.JFrame {
         String name = txtName.getText().trim();
         String surname = txtSurname.getText().trim();
         String telephone = txtTelephone.getText().trim();
-        String adres = txtAdres.getText().trim();
+        String address = txtAddress.getText().trim();
         if (isEdit == false) {
             try {
-                int add = db.connect().executeUpdate("INSERT INTO `customers` (`name`, `surname`, `telephone`, `adres`) VALUES ('" + name + "', '" + surname + "', '" + telephone + "', '" + adres + "');");
+                int add = db.connect().executeUpdate(""
+                        + "INSERT INTO `customers` (`name`, `surname`, `telephone`, `address`) "
+                        + "VALUES ('" + name + "', '" + surname + "', '" + telephone + "', '" + address + "');");
                 if (add > 0) {
                     JOptionPane.showMessageDialog(rootPane, "Successful");
                    
@@ -140,7 +142,7 @@ public class CustomerView extends javax.swing.JFrame {
         } else {
             try {
 
-                String query = String.format("update customers Set name = '%s', surname = '%s', telephone = '%s', adres = '%s' where id = %s", name, surname, telephone, adres, cid);
+                String query = String.format("update customers Set name = '%s', surname = '%s', telephone = '%s', address = '%s' where id = %s", name, surname, telephone, address, cid);
                 int result = db.connect().executeUpdate(query);
                 if (result > 0) {
                     JOptionPane.showMessageDialog(rootPane, "Successful");
@@ -204,7 +206,7 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txtAdres;
+    private javax.swing.JTextArea txtAddress;
     private javax.swing.JTextField txtName;
     private javax.swing.JButton txtSave;
     private javax.swing.JTextField txtSurname;

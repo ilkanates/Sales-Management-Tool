@@ -34,7 +34,6 @@ public class DB {
             Class.forName(driver);
             con = DriverManager.getConnection(url + dbName + encode, userName, userPass);
             st = con.createStatement();
-            System.out.println("Connection Successful");
         } catch (ClassNotFoundException | SQLException e) {
             System.err.println("Connection Error : " + e);
         }
@@ -47,7 +46,6 @@ public class DB {
             Class.forName(driver);
             con = DriverManager.getConnection(url + dbName + encode, userName, userPass);
             pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            System.out.println("Connection Successful");
         } catch (Exception e) {
             System.err.println("Connection Error : " + e);
         }

@@ -328,19 +328,19 @@ public class mainScreen extends javax.swing.JFrame {
         dtm.addColumn("NAME");
         dtm.addColumn("SURNAME");
         dtm.addColumn("TEL.");
-        dtm.addColumn("ADRES");
+        dtm.addColumn("ADDRESS");
 
         try {
-            String query = "select *from customers";
+            String query = "SELECT * from customers";
             ResultSet rs = db.connect().executeQuery(query);
             while (rs.next()) {
                 String id = rs.getString("id");
                 String name = rs.getString("name");
                 String surname = rs.getString("surname");
                 String telephone = rs.getString("telephone");
-                String adres = rs.getString("adres");
+                String address = rs.getString("address");
 
-                dtm.addRow(new String[]{id, name, surname, telephone, adres});
+                dtm.addRow(new String[]{id, name, surname, telephone, address});
 
             }
             tableCustomers.setModel(dtm);
@@ -356,24 +356,27 @@ public class mainScreen extends javax.swing.JFrame {
         dtm1.addColumn("ID");
         dtm1.addColumn("NAME");
         dtm1.addColumn("SURNAME");
-        dtm1.addColumn("ADRES");
+        dtm1.addColumn("ADDRESS");
         dtm1.addColumn("AMOUNT");
         dtm1.addColumn("STATUS");
         dtm1.addColumn("ORDER DATE");
 
         try {
-            String query = "SELECT orders.id, customers.name, customers.surname, customers.adres, orders.amount, orders.status, date(orders.createdAt) as createdAt FROM susatis.orders JOIN customers ON orders.cid = customers.id";
+            String query = ""
+                    + "SELECT orders.id, customers.name, customers.surname, customers.address, orders.amount, orders.status, date(orders.createdAt) as createdAt "
+                    + "FROM susatis.orders "
+                    + "JOIN customers ON orders.cid = customers.id";
             ResultSet rs = db.connect().executeQuery(query);
             while (rs.next()) {
                 String id = rs.getString("id");
                 String name = rs.getString("name");
                 String surname = rs.getString("surname");
-                String adres = rs.getString("adres");
+                String address = rs.getString("address");
                 String amount = rs.getString("amount");
                 String status = rs.getString("status");
                 String createdAt = rs.getString("createdAt");
 
-                dtm1.addRow(new String[]{id, name, surname, adres, amount, status, createdAt});
+                dtm1.addRow(new String[]{id, name, surname, address, amount, status, createdAt});
 
             }
             tableOrders.setModel(dtm1);
@@ -393,9 +396,9 @@ public class mainScreen extends javax.swing.JFrame {
             String id = (String) tableCustomers.getValueAt(row, 0);
             String name = (String) tableCustomers.getValueAt(row, 1);
             String surname = (String) tableCustomers.getValueAt(row, 2);
-            String adres = (String) tableCustomers.getValueAt(row, 4);
+            String address = (String) tableCustomers.getValueAt(row, 4);
 
-            OrderView addOrder = new OrderView(id, name, surname, adres);
+            OrderView addOrder = new OrderView(id, name, surname, address);
             addOrder.setVisible(true);
         }
         refreshOrderTable();
@@ -469,7 +472,7 @@ public class mainScreen extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        int result = JOptionPane.showConfirmDialog(rootPane, "Are you sure", "Delete Finished Orders", JOptionPane.YES_NO_OPTION);
+        int result = JOptionPane.showConfirmDialog(rootPane, "Are you sure?", "Delete Finished Orders", JOptionPane.YES_NO_OPTION);
         if (result == JOptionPane.YES_OPTION) {
             try {
                 String query = "DELETE FROM `orders` where status = 'Done'";
@@ -487,7 +490,7 @@ public class mainScreen extends javax.swing.JFrame {
         if (row == -1) {
             JOptionPane.showMessageDialog(rootPane, "Please select a order");
         } else {
-            int result = JOptionPane.showConfirmDialog(rootPane, "Are you sure", "Delete Order", JOptionPane.YES_NO_OPTION);
+            int result = JOptionPane.showConfirmDialog(rootPane, "Are you sure?", "Delete Order", JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
                 String id = (String) tableOrders.getValueAt(row, 0);
                 try {
@@ -524,7 +527,7 @@ public class mainScreen extends javax.swing.JFrame {
         if (row == -1) {
             JOptionPane.showMessageDialog(rootPane, "Please select a customer");
         } else {
-            int result = JOptionPane.showConfirmDialog(rootPane, "Are you sure", "Delete Customer", JOptionPane.YES_NO_OPTION);
+            int result = JOptionPane.showConfirmDialog(rootPane, "Are you sure?", "Delete Customer", JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
                 String id = (String) tableCustomers.getValueAt(row, 0);
                 try {
