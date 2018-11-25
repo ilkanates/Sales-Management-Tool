@@ -1,10 +1,5 @@
 # Sales-Management-Tool
 
-Sales management tool can use to manage accounts and orders
-![alt text](media/mainSc.png "Description goes here")
+Sales management tool can be used to manage accounts and orders
 
-
-
-
-
-
+[<img src="Media/mainSc.png">]
